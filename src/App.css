@@ -1,0 +1,11 @@
+input,
+select,
+button {
+  display: block;
+}
+
+.err_msg {
+  font-size: 0.8em;
+  color: red;
+  display: block;
+}
