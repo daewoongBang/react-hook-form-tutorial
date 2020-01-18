@@ -1,8 +1,10 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import PrettyPrintJson from '../utils/PrettyPrintJson';
-import Input from './common/input';
-import Select from './common/select';
+/** @jsx jsx */
+import { jsx } from '@emotion/core';
+
+import { Input, Select, Button } from './common/fields';
 
 type FormData = {
   lastName: string;
@@ -16,6 +18,7 @@ type FormData = {
 const Join: React.FC = () => {
   const { register, watch, handleSubmit, getValues, errors } = useForm<FormData>();
   const onSubmit = (data: any) => {
+    alert('가입완료!');
     console.log(data);
   };
   const watchAllFields = watch();
@@ -23,13 +26,27 @@ const Join: React.FC = () => {
   return (
     <div>
       <div>
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <h1
+          css={{
+            textAlign: 'center',
+          }}
+        >
+          회원가입
+        </h1>
+        <form
+          css={{
+            maxWidth: '500px',
+            margin: '0 auto',
+            padding: '10px',
+          }}
+          onSubmit={handleSubmit(onSubmit)}
+        >
           <Input
             type="email"
             name="email"
             placeholder="이메일을 입력해주세요."
             label="이메일"
-            register={register({ required: '이메일은 필수 항목 입니다.' })}
+            register={register({ required: '필수 항목 입니다.' })}
             errors={errors}
           />
           <Input
@@ -38,7 +55,7 @@ const Join: React.FC = () => {
             placeholder="비밀번호를 입력해주세요."
             label="비밀번호"
             register={register({
-              required: '비밀번호는 필수 항목입니다.',
+              required: '필수 항목입니다.',
               minLength: { value: 8, message: '최소 입력 수는 8자리 입니다.' },
             })}
             errors={errors}
@@ -73,7 +90,10 @@ const Join: React.FC = () => {
           <Select
             name="gender"
             label="성별"
-            options={[{ value: 'male', label: '남' }]}
+            options={[
+              { value: 'male', label: '남' },
+              { value: 'female', label: '여' },
+            ]}
             register={register({ required: '필수 항목 입니다.' })}
             errors={errors}
           />
@@ -88,11 +108,9 @@ const Join: React.FC = () => {
             })}
             errors={errors}
           />
-          {errors.phoneNumber && errors.phoneNumber.message}
-          <button type="submit">가입하기</button>
+          <Button type="submit">가입하기</Button>
         </form>
       </div>
-      결과(watch)
       <PrettyPrintJson data={watchAllFields} />
     </div>
   );
