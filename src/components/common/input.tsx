@@ -1,10 +1,12 @@
 import React from 'react';
+import Message from './message';
 
 interface InputProps {
   name: any;
   label?: string;
   register?: any;
   errors?: any;
+  [x: string]: any;
 }
 
 export default function Input({ name, label, register, errors, ...rest }: InputProps): React.ReactElement {
@@ -14,7 +16,7 @@ export default function Input({ name, label, register, errors, ...rest }: InputP
       {label && <label htmlFor={name}>{label}</label>}
 
       <input className={errorMsg ? 'error' : ''} name={name} ref={register} {...rest} />
-      <div>{errorMsg}</div>
+      {errorMsg && <Message status="error" message={errorMsg} />}
     </div>
   );
 }
