@@ -14,7 +14,18 @@ export default function Button({ theme, ...rest }: ButtonProps): React.ReactElem
         margin: '10px 0px',
       }}
     >
-      <button {...rest} />
+      <button
+        css={{
+          width: '100%',
+          fontSize: '1.2em',
+          fontWeight: 600,
+          background: '#2767b7',
+          borderRadius: '3px',
+          padding: '20px',
+          color: 'white',
+        }}
+        {...rest}
+      />
     </div>
   );
 }

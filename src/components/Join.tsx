@@ -111,7 +111,7 @@ const Join: React.FC = () => {
           <Button type="submit">가입하기</Button>
         </form>
       </div>
-      <PrettyPrintJson data={watchAllFields} />
+      <PrettyPrintJson title="All Watch" data={watchAllFields} />
     </div>
   );
 };

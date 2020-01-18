@@ -2,7 +2,12 @@ import React from 'react';
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
 
-const PrettyPrintJson = (data: any): React.ReactElement => (
+interface PrintJsonProps {
+  title?: string;
+  data: any;
+}
+
+const PrettyPrintJson = ({ title, data }: PrintJsonProps): React.ReactElement => (
   <div
     css={{
       maxWidth: '500px',
@@ -10,7 +15,7 @@ const PrettyPrintJson = (data: any): React.ReactElement => (
       padding: '10px',
     }}
   >
-    watch
+    {title}
     <pre
       css={{
         background: 'black',
